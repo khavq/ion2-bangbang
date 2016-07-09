@@ -1,0 +1,56 @@
+<!--
+  Generated template for the PhotoDetailPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>photoDetail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form [ngFormModel]="productForm" (submit)="createProduct($event)">  
+<div class="row">
+	<div class="col col-30">
+		<img src="{{imgURI}}"/>
+	</div>
+
+	<div class="col col-70">
+		<ion-list>
+		  <ion-item>
+		    <ion-label floating>Name</ion-label>
+		    <ion-input ngControl="name" type="text" placeholder="Name"></ion-input>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label floating>Tagline</ion-label>
+		    <ion-input ngControl="tagline" type="text" placeholder="Tagline"></ion-input>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label floating>Price</ion-label>
+		    <ion-input ngControl="price" type="text" placeholder="Price"></ion-input>
+		  </ion-item>
+		</ion-list>
+	</div>
+</div>
+<div class="row">
+	<ion-list>
+		<ion-item>
+		    <ion-label floating>Description</ion-label>
+		    <ion-input ngControl="description" type="text" placeholder="Description"></ion-input>
+		</ion-item>
+	</ion-list>
+</div>
+<div class="row">
+	<button block type="submit">
+      Create a Product
+    </button>
+</div>
+</form>
+
+
+</ion-content>

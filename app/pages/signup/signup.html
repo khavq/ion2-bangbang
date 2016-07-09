@@ -1,0 +1,32 @@
+<ion-navbar primary *navbar>
+  <ion-title>
+    Create a new account
+  </ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="signup">
+  <img src="img/logo.png" class="auth-img">
+  <form [ngFormModel]="signupForm" (submit)="signupUser($event)">
+    <ion-item>
+      <ion-icon name="person" item-left></ion-icon>
+      <ion-input ngControl="name" type="text" placeholder="Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="mail" item-left></ion-icon>
+      <ion-input ngControl="email" type="email" placeholder="Email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="key" item-left></ion-icon>
+      <ion-input ngControl="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+
+    <button block type="submit">
+      Create an Account
+    </button>
+
+  </form>
+
+</ion-content>

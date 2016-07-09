@@ -1,0 +1,46 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Card Images</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+  <ion-card *ngFor="let item of products" (click)="itemTapped($event, item)" >
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="{{item.data.seller_image}}">
+      </ion-avatar>
+      <h2>{{item.data.seller_name}}</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+
+    <img src="{{item.data.image}}">
+
+    <ion-card-content>
+      <p>{{item.data.description}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button primary clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button primary clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          11h ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
