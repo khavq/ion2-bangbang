@@ -48,6 +48,7 @@ export class PhotoDetailPage {
         this.nav.present(self.loading);
         var userId = firebase.auth().currentUser.uid;
         firebase.database().ref('/userProfile/' + userId).once('value').then(function(snapshot) {
+            var timestamp = (new Date()).getTime();
         	var product = {
                 seller_id: userId,
                 seller_name: snapshot.val().name,
@@ -57,7 +58,9 @@ export class PhotoDetailPage {
                 tagline: self.productForm.value.tagline,
                 price: self.productForm.value.price,
                 description: self.productForm.value.description,
-                image: self.imgURI
+                image: self.imgURI,
+                created_at: timestamp,
+                updated_at: timestamp
             };
             self.Products.createProduct(product).then((data) => {
                     console.log("success:", data);

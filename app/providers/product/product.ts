@@ -28,7 +28,7 @@ export class Product {
     console.log("that", that);
 
     return new Observable(observer => {
-        that.products.limitToLast(3).on('value',
+        that.products.orderByChild("updated_at").limitToLast(3).on('value',
             (snapshot) => {
                 var arr = []
 
@@ -38,7 +38,9 @@ export class Product {
                         data: childSnapshot.val()
                     });
                 });
-                observer.next(arr)
+                observer.next(arr);
+                // sorting DESC
+                arr.reverse();
             },
             (error) => {
                 console.log("ERROR:", error)

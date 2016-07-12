@@ -290,6 +290,7 @@ var PhotoDetailPage = (function () {
         this.nav.present(self.loading);
         var userId = firebase.auth().currentUser.uid;
         firebase.database().ref('/userProfile/' + userId).once('value').then(function (snapshot) {
+            var timestamp = (new Date()).getTime();
             var product = {
                 seller_id: userId,
                 seller_name: snapshot.val().name,
@@ -299,7 +300,9 @@ var PhotoDetailPage = (function () {
                 tagline: self.productForm.value.tagline,
                 price: self.productForm.value.price,
                 description: self.productForm.value.description,
-                image: self.imgURI
+                image: self.imgURI,
+                created_at: timestamp,
+                updated_at: timestamp
             };
             self.Products.createProduct(product).then(function (data) {
                 console.log("success:", data);
@@ -1108,7 +1111,7 @@ var Product = (function () {
         var that = this;
         console.log("that", that);
         return new Observable_1.Observable(function (observer) {
-            that.products.limitToLast(3).on('value', function (snapshot) {
+            that.products.orderByChild("updated_at").limitToLast(3).on('value', function (snapshot) {
                 var arr = [];
                 snapshot.forEach(function (childSnapshot) {
                     arr.push({
@@ -1117,6 +1120,8 @@ var Product = (function () {
                     });
                 });
                 observer.next(arr);
+                // sorting DESC
+                arr.reverse();
             }, function (error) {
                 console.log("ERROR:", error);
                 observer.error(error);
