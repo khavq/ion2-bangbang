@@ -4,6 +4,7 @@ import {Camera} from 'ionic-native';
 import {PhotoDetailPage} from '../../pages/photo-detail/photo-detail';
 import {GlobalVars} from '../../providers/global-vars/global-vars';
 import {BarcodeScanner} from 'ionic-native';
+import {ImagePicker} from 'ionic-native';
 
 /*
   Generated class for the PhotoPage page.
@@ -15,16 +16,7 @@ import {BarcodeScanner} from 'ionic-native';
     templateUrl: 'build/pages/photo/photo.html'
 })
 export class PhotoPage {
-    // var photoOptions = {
-    //     quality: 75,
-    //     destinationType: Camera.DestinationType.DATA_URL,
-    //     allowEdit: true,
-    //     encodingType: Camera.EncodingType.JPEG,
-    //     // popoverOptions: Camera.PopoverOptions,
-    //     targetHeight: 500,
-    //     targetWidth: 500,
-    //     saveToPhotoAlbum: false
-    // }
+    
     public photoOptions: any;
     constructor(private nav: NavController, public globalVars: GlobalVars) {
     	this.nav = nav;
@@ -41,8 +33,24 @@ export class PhotoPage {
 
     	this.globalVars = globalVars;
     }
+
+    imagePicker() {
+        var options = {
+           maximumImagesCount: 10,
+           width: 800,
+           height: 800,
+           quality: 80
+          };
+        ImagePicker.getPictures(options).then((results) => {
+          for (var i = 0; i < results.length; i++) {
+              console.log('Image URI: ' + results[i]);
+          }
+        }, (err) => {
+        });
+    }
+
     takePhoto() {
-        console.log("take photo",Camera.PictureSourceType.CAMERA);
+        // console.log("take photo",Camera.PictureSourceType.CAMERA);
         this.photoOptions.sourceType = Camera.PictureSourceType.CAMERA;
         Camera.getPicture(this.photoOptions).then((imageData) => {
 		 // imageData is either a base64 encoded string or a file URI

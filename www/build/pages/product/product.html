@@ -1,0 +1,28 @@
+<ion-content padding class="signup">
+  <img src="img/logo.png" class="auth-img">
+  <form [ngFormModel]="productForm" (submit)="createProduct($event)">
+
+    <ion-item>
+      <ion-label stacked>Name</ion-label>
+      <ion-input ngControl="name" type="text" placeholder="Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Tagline</ion-label>
+      <ion-input ngControl="tagline" type="text" placeholder="Tagline"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Price</ion-label>
+      <ion-input ngControl="price" type="text" placeholder="Price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-input ngControl="description" type="text" placeholder="Description"></ion-input>
+    </ion-item>
+    <button block type="submit">
+      Create a Product
+    </button>
+
+  </form>
+
+</ion-content>
+

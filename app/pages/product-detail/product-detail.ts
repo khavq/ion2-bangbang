@@ -11,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'build/pages/product-detail/product-detail.html',
 })
 export class ProductDetailPage {
-
+  selectedItem: any;
   constructor(private nav: NavController, navParams: NavParams) {
   	this.selectedItem = navParams.get('item');
 

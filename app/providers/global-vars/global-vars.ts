@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class GlobalVars {
   public imgURI: any;
   constructor() {
-    this.imgURI = "";
+    this.imgURI = "http://masterherald.com/wp-content/uploads/2015/01/iron-man.jpeg";
   }
 
   setImgURI(value): any {

@@ -28,7 +28,7 @@ export class Product {
     console.log("that", that);
 
     return new Observable(observer => {
-        that.products.limitToLast(5).on('value',
+        that.products.limitToLast(3).on('value',
             (snapshot) => {
                 var arr = []
 

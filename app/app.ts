@@ -32,16 +32,7 @@ export class MyApp {
       if ( user ) {
         
         var userId = firebase.auth().currentUser.uid;
-        // firebase.database().ref('/userProfile/' + userId).once('value').then(function(snapshot) {
-        //   // var name = snapshot.val().name;
-        //   CrrUser = {
-        //     name: snapshot.val().name,
-        //     email: snapshot.val().email,
-        //     image: snapshot.val().image
-        //   }
-        //   // current_user = CrrUser;
-        //   // ...
-        // });
+        
         
         // if there's a user take him to the home page
         this.rootPage = TabsPage;

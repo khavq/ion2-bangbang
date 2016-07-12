@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Loading, Toast} from 'ionic-angular';
 import {GlobalVars} from '../../providers/global-vars/global-vars';
 import {FormBuilder,Validators} from '@angular/common';
 import {Product} from '../../providers/product/product';
@@ -19,6 +19,8 @@ export class PhotoDetailPage {
     public imgURI: any;
     public productForm: any;
     public current_user: any;
+    public loading: any;
+    public toast: any;
     constructor(private nav: NavController, 
     	public globalVars: GlobalVars, 
     	public Products: Product, 
@@ -34,11 +36,16 @@ export class PhotoDetailPage {
         this.globalVars = globalVars;
         this.imgURI = this.globalVars.getImgURI();
         this.nav = nav;
+        console.log("self", this);
         // let self = this;
     }
     createProduct(event) {
         event.preventDefault();
         let self = this;
+        self.loading = Loading.create({
+            // message: "processing..."
+        });
+        this.nav.present(self.loading);
         var userId = firebase.auth().currentUser.uid;
         firebase.database().ref('/userProfile/' + userId).once('value').then(function(snapshot) {
         	var product = {
@@ -54,8 +61,30 @@ export class PhotoDetailPage {
             };
             self.Products.createProduct(product).then((data) => {
                     console.log("success:", data);
+                    
+                    self.loading.dismiss().then(function(){
+                        self.toast = Toast.create({
+                            message: "Create product success!",
+                            duration: 1000,
+                            position: 'bottom'
+                        });
+                        self.nav.present(self.toast);
+                    });
+
+
+
+                    // self.nav.Tab.setSelected(1);
                 }, (error) => {
                     console.log("failed:", error);
+                    
+                    self.loading.dismiss().then(function(){
+                        self.toast = Toast.create({
+                            message: "Create product failed!",
+                            duration: 1000,
+                            position: 'bottom'
+                        });
+                        self.nav.present(self.toast);
+                    });
                 })    
         
         });
